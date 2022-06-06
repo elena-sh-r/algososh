@@ -8,7 +8,7 @@
 .circlesContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
   justify-content: center;
   margin: 0 auto;
 }
