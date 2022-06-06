@@ -42,7 +42,7 @@ export const StringComponent: React.FC = () => {
   }, [step]);
 
   const reverse = () => {
-    if (step === -1) {
+    if (step < 0) {
       return;
     }
     
@@ -72,10 +72,9 @@ export const StringComponent: React.FC = () => {
     <SolutionLayout title="Строка">
       <div className={`${styles.controlsContainer}`}>
           <Input isLimitText={true} maxLength={11} value={value} onChange={handleChange} disabled={isLoading} />
-        <Button text="Развернуть" onClick={handleClick} isLoader={isLoading} />
+        <Button text="Развернуть" onClick={handleClick} isLoader={isLoading} disabled={!value} />
       </div>
       <div className={`${styles.circlesContainer}`}>
-        
         {result.split('').map((letter:string, index:number) => 
           <Circle extraClass={sortedIdx.includes(index) ? `${styles.modifiedCircleColor}` : candidatesIdx.includes(index) ? `${styles.changingCircleColor}` : ""} key={index} letter={letter} />
         )}
