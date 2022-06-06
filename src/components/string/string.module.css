@@ -1,0 +1,22 @@
+.controlsContainer {
+  display: flex;
+  gap: 12px;
+  max-width: 567px;
+  margin: 0 auto 120px auto;
+}
+
+.circlesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.changingCircleColor>div:nth-child(2)  {
+  border: 4px solid var(--changing-color);
+}
+
+.modifiedCircleColor>div:nth-child(2)   {
+  border: 4px solid var(--modified-color);
+}
