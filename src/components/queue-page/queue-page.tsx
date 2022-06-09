@@ -93,7 +93,7 @@ export const QueuePage: React.FC = () => {
     <SolutionLayout title="Очередь">
       <div className={`${styles.controlsContainer}`}>
         <div className={`${styles.inputsContainer}`}>
-          <Input isLimitText={true} maxLength={4} value={value} onChange={handleChange} />
+          <Input isLimitText={true} maxLength={4} value={value} onChange={handleChange} placeholder="Введите значение" />
           <Button text="Добавить" onClick={handleAdd} extraClass={`${styles.addButton}`} disabled={!value || tailIdx === elements.length - 1} />
           <Button text="Удалить" onClick={handleDelete} extraClass={`${styles.deleteButton}`} disabled={headIdx === -1 && tailIdx === -1} />
         </div>
