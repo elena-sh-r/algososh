@@ -27,7 +27,7 @@
   min-width: auto;
 }
 
-.removeButton {
+.clearButton {
   max-width: 119px;
   min-width: auto;
 }
@@ -35,7 +35,7 @@
 .circlesContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 78px 16px;
   justify-content: center;
   margin: 0 auto;
 }
