@@ -18,7 +18,7 @@ export const ListPage: React.FC = () => {
           <Button text="Удалить из tail" extraClass={`${styles.valueButton}`} />
         </div>
         <div className={`${styles.inputsContainer}`}>
-          <Input placeholder="Введите индекс" />
+          <Input placeholder="Введите индекс" extraClass={`${styles.input}`} />
           <Button text="Добавить в head" extraClass={`${styles.indexButton}`} />
           <Button text="Добавить в tail" extraClass={`${styles.indexButton}`} />
         </div>
