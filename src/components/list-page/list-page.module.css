@@ -1,0 +1,39 @@
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+  margin: 0 auto 48px auto;
+  max-width: 952px;
+}
+
+.inputsContainer {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.valueButton {
+  max-width: 175px;
+  width: 100%;
+  min-width: auto;
+}
+
+.indexButton {
+  max-width: 362px;
+  width: 100%;
+  min-width: auto;
+}
+
+.circlesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.changingCircleColor>div:nth-child(2)  {
+  border: 4px solid var(--changing-color);
+}
