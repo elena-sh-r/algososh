@@ -4,6 +4,7 @@ import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { Input } from "../ui/input/input";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
+import { timeLog } from "console";
 
 export const StringComponent: React.FC = () => {
   const [value, setValue] = useState('');
@@ -17,6 +18,8 @@ export const StringComponent: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const timeout = 1000;
+  
   const handleChange = (e: any) => {
     const value = e.target?.value;
     setValue(value);
@@ -38,7 +41,7 @@ export const StringComponent: React.FC = () => {
   }
 
   useEffect(() => {
-    setTimeout(() => reverse(), 1000);
+    setTimeout(() => reverse(), timeout);
   }, [step]);
 
   const reverse = () => {
