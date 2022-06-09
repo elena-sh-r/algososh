@@ -13,6 +13,8 @@ export const FibonacciPage: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const timeout = 500;
+  
   const getFibonacciNumbers = (n: number) => {
     const array = [];
 
@@ -75,7 +77,7 @@ export const FibonacciPage: React.FC = () => {
   }, [numbers])
 
   useEffect(() => {
-    setTimeout(() => handleTick(), 500);
+    setTimeout(() => handleTick(), timeout);
   }, [step])
 
   return (
