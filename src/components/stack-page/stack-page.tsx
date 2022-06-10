@@ -12,7 +12,7 @@ export const StackPage: React.FC = () => {
   const [deletedIdx, setDeletedIdx] = useState(-1);
 
   const [render, setRender] = useState(false);
-  const [stack, setStack] = useState(new Stack<number|string>(setRender, setValue, setAddedIdx, setDeletedIdx));
+  const [stack, setStack] = useState(new Stack<number|string>('', setRender, setValue, setAddedIdx, setDeletedIdx));
 
   const timeout = 200;
 
