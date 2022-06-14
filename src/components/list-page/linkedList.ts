@@ -141,8 +141,14 @@ export class LinkedList<T> {
 
         if (i === indexToAdd - 1 && node) {
           const newNode = new LinkedListNode<T>(value);
+
+          if (indexToAdd === this.toArray().length) {
+            this.tail = newNode;
+          }
+
           newNode.next = node.next;
           node.next = newNode;
+
           break;
         }
 
@@ -193,6 +199,10 @@ export class LinkedList<T> {
           this.setOldItemIndex(index);
 
           await this.sleep(this.timeout);
+
+          if (index === this.toArray().length - 1) {
+            this.tail = prevNode;
+          }
 
           prevNode.next = node.next;
           break;
