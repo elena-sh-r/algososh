@@ -16,8 +16,8 @@ export const StackPage: React.FC = () => {
 
   const timeout = 200;
 
-  const handleChange = (e: any) => {
-    setValue(e.target?.value);
+  const handleChange = (e: React.UIEvent<HTMLInputElement>) => {
+    setValue((e.target as HTMLInputElement).value);
   }
 
   useEffect(() => {

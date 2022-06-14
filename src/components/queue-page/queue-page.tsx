@@ -17,8 +17,8 @@ export const QueuePage: React.FC = () => {
 
   const timeout = 200;
 
-  const handleChange = (e: any) => {
-    const value = e.target?.value;
+  const handleChange = (e: React.UIEvent<HTMLInputElement>) => {
+    const value = (e.target as HTMLInputElement).value;
     setValue(value);
   }
 

@@ -4,7 +4,6 @@ import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { Input } from "../ui/input/input";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
-import { timeLog } from "console";
 
 export const StringComponent: React.FC = () => {
   const [value, setValue] = useState('');
@@ -20,12 +19,12 @@ export const StringComponent: React.FC = () => {
 
   const timeout = 1000;
   
-  const handleChange = (e: any) => {
-    const value = e.target?.value;
+  const handleChange = (e: React.UIEvent<HTMLInputElement>) => {
+    const value = (e.target as HTMLInputElement).value;
     setValue(value);
   }
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: React.UIEvent<HTMLElement>) => {
     setSortedIdx([]);
     setCandidatesIdx([]);
     setResult(value);

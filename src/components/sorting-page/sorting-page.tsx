@@ -5,6 +5,7 @@ import { RadioInput } from "../ui/radio-input/radio-input";
 import { Button } from "../ui/button/button";
 import { Direction } from "../../types/direction";
 import { Column } from "../ui/column/column";
+import { getRandomArr } from "../../utils";
 
 export const SortingPage: React.FC = () => {
   const [arr, setArr] = useState<number[]>([]);
@@ -27,38 +28,23 @@ export const SortingPage: React.FC = () => {
 
   const timeout = 500;
 
-  const getRandomInt = (min: number, max: number) => {
-    const rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
-  }
-
-  const randomArr = () => {
-    const arrLength = getRandomInt(3,17);
-    const arr = [];
-    for (let i=0; i<arrLength; i++) {
-      arr.push(getRandomInt(0,100));
-    }
-
-    return arr;
-  }
-
-  const handleAsc = (e: any) => {
+  const handleAsc = (e: React.UIEvent<HTMLElement>) => {
     setIsLoading(true);
     setIsDesc(false);
     setStep(0);
   }
 
-  const handleDesc = (e: any) => {
+  const handleDesc = (e: React.UIEvent<HTMLElement>) => {
     setIsLoading(true);
     setIsDesc(true);
     setStep(0);
   }
 
-  const handleRefresh = (e: any) => {
+  const handleRefresh = (e: React.UIEvent<HTMLElement>) => {
     setStep(-1);
     setCandidateIdx(-1);
     setCandidatesIdx([]);
-    setArr(randomArr());
+    setArr(getRandomArr());
   }
 
   const sortInternal = () => {

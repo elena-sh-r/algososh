@@ -1,22 +1,34 @@
-import { AnyMxRecord } from "dns";
 import { LinkedListNode } from "./linkedListNode";
 
 export class LinkedList<T> {
   head: LinkedListNode<T> | null = null;
   tail: LinkedListNode<T> | null = null;
   emptyValue: T;
-  timeout:number;
-  setValue:any;
-  setIndexToProcess:any;
-  setNewItem:any;
-  setNewItemIndex:any;
-  setOldItem:any;
-  setOldItemIndex:any;
-  setProgressIndex:any;
-  setAddInProgress:any;
-  setDeleteInProgress:any;
+  timeout: number;
+  setValue: React.Dispatch<React.SetStateAction<T>>;
+  setIndexToProcess: React.Dispatch<React.SetStateAction<number|string>>;
+  setNewItem: React.Dispatch<React.SetStateAction<T|null>>;
+  setNewItemIndex: React.Dispatch<React.SetStateAction<number>>;
+  setOldItem: React.Dispatch<React.SetStateAction<T|null>>;
+  setOldItemIndex: React.Dispatch<React.SetStateAction<number>>;
+  setProgressIndex: React.Dispatch<React.SetStateAction<number>>;
+  setAddInProgress: React.Dispatch<React.SetStateAction<boolean>>;
+  setDeleteInProgress: React.Dispatch<React.SetStateAction<boolean>>;
 
-  constructor(emptyValue: T, setValue:any, setIndexToProcess:any, setNewItem:any, setNewItemIndex:any, setOldItem:any, setOldItemIndex:any, setProgressIndex:any, setAddInProgress:any, setDeleteInProgress:any, timeout:number, initialValues:T[]) {
+  constructor(
+      emptyValue: T,
+      setValue: React.Dispatch<React.SetStateAction<T>>,
+      setIndexToProcess: React.Dispatch<React.SetStateAction<number|string>>,
+      setNewItem: React.Dispatch<React.SetStateAction<T|null>>,
+      setNewItemIndex: React.Dispatch<React.SetStateAction<number>>,
+      setOldItem: React.Dispatch<React.SetStateAction<T|null>>,
+      setOldItemIndex: React.Dispatch<React.SetStateAction<number>>,
+      setProgressIndex: React.Dispatch<React.SetStateAction<number>>,
+      setAddInProgress: React.Dispatch<React.SetStateAction<boolean>>,
+      setDeleteInProgress: React.Dispatch<React.SetStateAction<boolean>>,
+      timeout:number,
+      initialValues:T[]
+  ) {
     this.emptyValue = emptyValue;
     this.setValue = setValue;
     this.setIndexToProcess = setIndexToProcess;

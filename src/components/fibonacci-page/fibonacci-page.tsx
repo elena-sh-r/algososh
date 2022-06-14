@@ -38,7 +38,7 @@ export const FibonacciPage: React.FC = () => {
     setNumbers(array);
   }
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: React.UIEvent<HTMLElement>) => {
     setNumbers([]);
     setNumbersToShow([]);
 
@@ -49,8 +49,8 @@ export const FibonacciPage: React.FC = () => {
     setStep(0);
   }
 
-  const handleChange = (e: any) => {
-    const value = e.target?.value;
+  const handleChange = (e: React.UIEvent<HTMLInputElement>) => {
+    const value = (e.target as HTMLInputElement).value;
     setValue(value);
   }
 
