@@ -1,0 +1,45 @@
+.controlsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 48px auto;
+  max-width: 829px;
+}
+
+.inputsContainer {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  max-width: 630px;
+  width: 100%;
+}
+
+.input {
+  padding: 18px 16px;
+}
+
+.addButton {
+  max-width: 121px;
+  min-width: auto;
+}
+
+.deleteButton {
+  max-width: 108px;
+  min-width: auto;
+}
+
+.clearButton {
+  max-width: 119px;
+  min-width: auto;
+}
+
+.circlesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 78px 16px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.changingCircleColor>div:nth-child(2)  {
+  border: 4px solid var(--changing-color);
+}
