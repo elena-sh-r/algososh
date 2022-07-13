@@ -6,6 +6,9 @@ import { Button } from "../ui/button/button";
 import { Direction } from "../../types/direction";
 import { Column } from "../ui/column/column";
 import { getRandomArr } from "../../utils";
+import { sortBubble, sortSelect } from "./utils";
+
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
 export const SortingPage: React.FC = () => {
   const [arr, setArr] = useState<number[]>([]);
@@ -26,7 +29,7 @@ export const SortingPage: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const timeout = 500;
+  const timeout = SHORT_DELAY_IN_MS;
 
   const handleAsc = (e: React.UIEvent<HTMLElement>) => {
     setIsLoading(true);
@@ -59,32 +62,14 @@ export const SortingPage: React.FC = () => {
         return;
       }
 
-      let array = [...arr];
-
-      if ((isDesc && arr[internalStep+1] > arr[internalStep]) || (!isDesc && arr[internalStep+1] < arr[internalStep])) {
-        const value = arr[internalStep];
-        array[internalStep] = array[internalStep+1];
-        array[internalStep+1] = value;
-
-        setArr(array);
-      }
+      setArr(sortBubble(arr, isDesc, internalStep));
 
       setCandidatesIdx([internalStep, internalStep+1]);
 
     } else {
       if (internalStep>=arr.length) {
-        let array = [...arr];
-        const value = array[step];
+        setArr(sortSelect(arr, isDesc, minNumIdx, maxNumIdx, step));
 
-        if (isDesc) {
-          array[step] = array[maxNumIdx];
-          array[maxNumIdx] = value;
-        } else {
-          array[step] = array[minNumIdx];
-          array[minNumIdx] = value;
-        }
-
-        setArr(array);
         setCandidateIdx(-1);
         setStep(step+1);
 

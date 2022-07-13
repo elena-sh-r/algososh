@@ -9,6 +9,7 @@ import { LinkedListNode } from "./linkedListNode";
 import { ArrowIcon } from "../ui/icons/arrow-icon";
 import { getRandomArr } from "../../utils";
 
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
 export const ListPage: React.FC = () => {
   const [indexToProcess, setIndexToProcess] = useState<string | number>('');
@@ -20,7 +21,7 @@ export const ListPage: React.FC = () => {
   const [oldItemIndex, setOldItemIndex] = useState(-1);
   const [addInProgress, setAddInProgress] = useState(false);
   const [deleteInProgress, setDeleteInProgress] = useState(false);
-  const [list, setList] = useState(new LinkedList<string|number>('', setValue, setIndexToProcess, setNewItem, setNewItemIndex, setOldItem, setOldItemIndex, setProgressIndex, setAddInProgress, setDeleteInProgress, 500, getRandomArr()));
+  const [list, setList] = useState(new LinkedList<string|number>('', setValue, setIndexToProcess, setNewItem, setNewItemIndex, setOldItem, setOldItemIndex, setProgressIndex, setAddInProgress, setDeleteInProgress, SHORT_DELAY_IN_MS, getRandomArr()));
 
   const isLoading = addInProgress || deleteInProgress;
   const endButtonsDisabled = list.toArray().length === 0 || isLoading;
@@ -30,16 +31,16 @@ export const ListPage: React.FC = () => {
     <SolutionLayout title="Связный список">
       <div className={`${styles.controlsContainer}`}>
         <div className={`${styles.inputsContainer}`}>
-          <Input isLimitText={true} maxLength={4} placeholder="Введите значение" value={value} onChange={(e: React.UIEvent<HTMLInputElement>) => setValue((e.target as HTMLInputElement).value)}/>
-          <Button text="Добавить в head" onClick={()=>list.prepend(value)} extraClass={`${styles.valueButton}`} disabled={!value || isLoading} isLoader={newItemIndex === 0 && addInProgress}/>
-          <Button text="Добавить в tail" onClick={()=>list.append(value)} extraClass={`${styles.valueButton}`} disabled={!value || isLoading} isLoader={newItemIndex === list.toArray().length - 1 && addInProgress} />
-          <Button text="Удалить из head" onClick={()=>list.deleteHead()} extraClass={`${styles.valueButton}`} disabled={endButtonsDisabled} isLoader={oldItemIndex === 0 && deleteInProgress} />
-          <Button text="Удалить из tail" onClick={()=>list.deleteTail()} extraClass={`${styles.valueButton}`} disabled={endButtonsDisabled} isLoader={oldItemIndex === list.toArray().length - 1 && deleteInProgress} />
+          <Input isLimitText={true} maxLength={4} placeholder="Введите значение" value={value} onChange={(e: React.UIEvent<HTMLInputElement>) => setValue((e.target as HTMLInputElement).value)} name="valueInput" />
+          <Button text="Добавить в head" onClick={()=>list.prepend(value)} extraClass={`${styles.valueButton}`} disabled={!value || isLoading} isLoader={newItemIndex === 0 && addInProgress} name="addToHeadButton" />
+          <Button text="Добавить в tail" onClick={()=>list.append(value)} extraClass={`${styles.valueButton}`} disabled={!value || isLoading} isLoader={newItemIndex === list.toArray().length - 1 && addInProgress} name="addToTailButton" />
+          <Button text="Удалить из head" onClick={()=>list.deleteHead()} extraClass={`${styles.valueButton}`} disabled={endButtonsDisabled} isLoader={oldItemIndex === 0 && deleteInProgress} name="deleteFromHeadButton" />
+          <Button text="Удалить из tail" onClick={()=>list.deleteTail()} extraClass={`${styles.valueButton}`} disabled={endButtonsDisabled} isLoader={oldItemIndex === list.toArray().length - 1 && deleteInProgress} name="deleteFromTailButton" />
         </div>
         <div className={`${styles.inputsContainer}`}>
-          <Input placeholder="Введите индекс" type="number" value={indexToProcess} onChange={(e: React.UIEvent<HTMLInputElement>) => setIndexToProcess((e.target as HTMLInputElement).value)} extraClass={`${styles.input}`} />
-          <Button text="Добавить по индексу" onClick={()=>list.addByIndex(+indexToProcess, value)} extraClass={`${styles.indexButton}`} disabled={!value || indexButtonsDisabled} isLoader={+indexToProcess > 0 && addInProgress} />
-          <Button text="Удалить по индексу" onClick={()=>list.deleteByIndex(+indexToProcess)} extraClass={`${styles.indexButton}`} disabled={indexButtonsDisabled} isLoader={+indexToProcess > 0 && deleteInProgress} />
+          <Input placeholder="Введите индекс" type="number" value={indexToProcess} onChange={(e: React.UIEvent<HTMLInputElement>) => setIndexToProcess((e.target as HTMLInputElement).value)} extraClass={`${styles.input}`} name="indexInput" />
+          <Button text="Добавить по индексу" onClick={()=>list.addByIndex(+indexToProcess, value)} extraClass={`${styles.indexButton}`} disabled={!value || indexButtonsDisabled} isLoader={+indexToProcess > 0 && addInProgress} name="addByIndexButton" />
+          <Button text="Удалить по индексу" onClick={()=>list.deleteByIndex(+indexToProcess)} extraClass={`${styles.indexButton}`} disabled={indexButtonsDisabled} isLoader={+indexToProcess > 0 && deleteInProgress} name="removedByIndexButton" />
         </div>
       </div>
       <div className={`${styles.circlesContainer}`}>

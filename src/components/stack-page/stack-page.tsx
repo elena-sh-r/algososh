@@ -6,6 +6,8 @@ import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 
+import { EXTRA_SHORT_DELAY_IN_MS } from "../../constants/delays";
+
 export const StackPage: React.FC = () => {
   const [value, setValue] = useState<number|string>('');
   const [addedIdx, setAddedIdx] = useState(-1);
@@ -14,7 +16,7 @@ export const StackPage: React.FC = () => {
   const [render, setRender] = useState(false);
   const [stack, setStack] = useState(new Stack<number|string>('', setRender, setValue, setAddedIdx, setDeletedIdx));
 
-  const timeout = 200;
+  const timeout = EXTRA_SHORT_DELAY_IN_MS;
 
   const handleChange = (e: React.UIEvent<HTMLInputElement>) => {
     setValue((e.target as HTMLInputElement).value);
@@ -45,10 +47,10 @@ export const StackPage: React.FC = () => {
       <div className={`${styles.controlsContainer}`}>
         <div className={`${styles.inputsContainer}`}>
           <Input isLimitText={true} maxLength={4} value={value} onChange={handleChange} placeholder="" />
-          <Button text="Добавить" extraClass={`${styles.addButton}`} onClick={()=>stack.push(value)} disabled={value.toString().length <= 0 || value.toString().length > 4} />
-          <Button text="Удалить" extraClass={`${styles.deleteButton}`} onClick={()=>setDeletedIdx(stack.getSize()-1)} disabled={stack.getSize() === 0} />
+          <Button text="Добавить" extraClass={`${styles.addButton}`} onClick={()=>stack.push(value)} disabled={value.toString().length <= 0 || value.toString().length > 4} name="addButton" />
+          <Button text="Удалить" extraClass={`${styles.deleteButton}`} onClick={()=>setDeletedIdx(stack.getSize()-1)} disabled={stack.getSize() === 0} name="deleteButton" />
         </div>
-        <Button text="Очистить" extraClass={`${styles.clearButton}`} onClick={()=>stack.clear()} disabled={stack.getSize() === 0} />
+        <Button text="Очистить" extraClass={`${styles.clearButton}`} onClick={()=>stack.clear()} disabled={stack.getSize() === 0} name="clearButton" />
       </div>
       <div className={`${styles.circlesContainer}`}>
         {stack.getElements().map((element: string|number, index:number) => 
