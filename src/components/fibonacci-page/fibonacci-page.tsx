@@ -5,6 +5,8 @@ import { Button } from "../ui/button/button";
 import { Input } from "../ui/input/input";
 import { Circle } from "../ui/circle/circle";
 
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
+
 export const FibonacciPage: React.FC = () => {
   const [value, setValue] = useState('');
   const [numbers, setNumbers] = useState<number[]>([]);
@@ -13,7 +15,7 @@ export const FibonacciPage: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const timeout = 500;
+  const timeout = SHORT_DELAY_IN_MS;
   
   const getFibonacciNumbers = (n: number) => {
     const array = [];
@@ -84,7 +86,7 @@ export const FibonacciPage: React.FC = () => {
     <SolutionLayout title="Последовательность Фибоначчи">
       <div className={`${styles.controlsContainer}`}>
         <Input isLimitText={true} min="1" max="19" type="number" onChange={handleChange} value={value} disabled={isLoading} />
-        <Button text="Рассчитать" onClick={handleClick} isLoader={isLoading} disabled={+value <= 0 || +value > 19} />
+        <Button text="Рассчитать" onClick={handleClick} isLoader={isLoading} disabled={+value <= 0 || +value > 19} name="fibonacciButton" />
       </div>
       <div className={`${styles.circlesContainer}`}>
         {numbersToShow.map((number:number, index:number) => 

@@ -4,20 +4,24 @@ import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { Input } from "../ui/input/input";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
+import {reverseString} from "../string/utils"
+
+import { DELAY_IN_MS } from "../../constants/delays";
 
 export const StringComponent: React.FC = () => {
   const [value, setValue] = useState('');
 
+  const [resultArray, setResultArray] = useState<string[][]>([]);
+
   const [result, setResult] = useState('');
   const [step, setStep] = useState(-1);
 
-  const [strArray, setStrArray] = useState<string[]>([]);
   const [candidatesIdx, setCandidatesIdx] = useState<number[]>([]);
   const [sortedIdx, setSortedIdx] = useState<number[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const timeout = 1000;
+  const timeout = DELAY_IN_MS;
   
   const handleChange = (e: React.UIEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
@@ -28,13 +32,13 @@ export const StringComponent: React.FC = () => {
     setSortedIdx([]);
     setCandidatesIdx([]);
     setResult(value);
-    setStrArray(value.split(''));
     setValue('');
     
     if (!value) {
       return;
     }
 
+    setResultArray(reverseString(value));
     setIsLoading(true);
     setStep(0);
   }
@@ -55,17 +59,9 @@ export const StringComponent: React.FC = () => {
       return;
     } 
     
-    setCandidatesIdx([...candidatesIdx, step + 1, strArray.length - step - 2]);
-
-    let array = [...strArray];
-    const char = array[step];
-    array[step] = strArray[strArray.length - step - 1];
-    array[strArray.length - step - 1] = char;
-
-    setStrArray(array);
-    setResult(array.join(''));
-
-    setSortedIdx([...sortedIdx, step, strArray.length - step - 1]);
+    setCandidatesIdx([...candidatesIdx, step + 1, result.length - step - 2]);
+    setResult(resultArray[step].join(''));
+    setSortedIdx([...sortedIdx, step, result.length - step - 1]);
   
     setStep(step+1);
   }
@@ -74,7 +70,7 @@ export const StringComponent: React.FC = () => {
     <SolutionLayout title="Строка">
       <div className={`${styles.controlsContainer}`}>
           <Input isLimitText={true} maxLength={11} value={value} onChange={handleChange} disabled={isLoading} />
-        <Button text="Развернуть" onClick={handleClick} isLoader={isLoading} disabled={!value} />
+        <Button text="Развернуть" onClick={handleClick} isLoader={isLoading} disabled={!value} name="stringReverseButton" />
       </div>
       <div className={`${styles.circlesContainer}`}>
         {result.split('').map((letter:string, index:number) => 
