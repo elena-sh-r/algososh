@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 import styles from "./queue-page.module.css";
-
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Queue } from "./queue";
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
+
+import { EXTRA_SHORT_DELAY_IN_MS } from "../../constants/delays";
 
 export const QueuePage: React.FC = () => {
   const [value, setValue] = useState('');
@@ -15,7 +16,7 @@ export const QueuePage: React.FC = () => {
   const [render, setRender] = useState(false);
   const [queue, setQueue] = useState(new Queue<string>(7, '', setRender, setValue, setAddedIdx, setDeletedIdx));
 
-  const timeout = 200;
+  const timeout = EXTRA_SHORT_DELAY_IN_MS;
 
   const handleChange = (e: React.UIEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
@@ -49,10 +50,10 @@ export const QueuePage: React.FC = () => {
       <div className={`${styles.controlsContainer}`}>
         <div className={`${styles.inputsContainer}`}>
           <Input isLimitText={true} maxLength={4} value={value} onChange={handleChange} placeholder="Введите значение" />
-          <Button text="Добавить" onClick={()=>queue.enqueue(value)} extraClass={`${styles.addButton}`} disabled={!value || queue.getTailIdx() === queue.getSize() - 1} />
-          <Button text="Удалить" onClick={()=>setDeletedIdx(queue.getHeadIdx())} extraClass={`${styles.deleteButton}`} disabled={queue.getHeadIdx() === -1 && queue.getTailIdx() === -1} />
+          <Button text="Добавить" onClick={()=>queue.enqueue(value)} extraClass={`${styles.addButton}`} disabled={!value || queue.getTailIdx() === queue.getSize() - 1} name="addButton" />
+          <Button text="Удалить" onClick={()=>setDeletedIdx(queue.getHeadIdx())} extraClass={`${styles.deleteButton}`} disabled={queue.getHeadIdx() === -1 && queue.getTailIdx() === -1} name="deleteButton" />
         </div>
-        <Button text="Очистить" onClick={()=>queue.clear()} extraClass={`${styles.removeButton}`} disabled={queue.getHeadIdx() === -1 && queue.getTailIdx() === -1} />
+        <Button text="Очистить" onClick={()=>queue.clear()} extraClass={`${styles.removeButton}`} disabled={queue.getHeadIdx() === -1 && queue.getTailIdx() === -1} name="clearButton" />
       </div>
       <div className={`${styles.circlesContainer}`}>
         {queue.getElements().map((letter:string, index:number) => 
